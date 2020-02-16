@@ -103,6 +103,9 @@ void main(void)
             LATDbits.LATD1 = 1;
             // Wait for line to settle
             // TODO(tdial): How long do I have to wait?
+            // These NOPs are probably not needed since the dac_write
+            // funtion will cost some cycles and the lines will have
+            // settled by the time that we enable the 4051.
             NOP(); NOP(); NOP(); NOP(); // 1 uS
               
             // Select multiplexer address on 4051 (0..7)
@@ -110,6 +113,7 @@ void main(void)
                         
             // Wait for lines to settle
             // TODO(tdial): How long do I have to wait?
+            // We probably also do not need these NOPs.
             NOP(); NOP(); NOP(); NOP(); // 1 uS                       
             
             ++val;
